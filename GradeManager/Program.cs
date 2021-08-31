@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace GradeManager
 {
     class Program
     {
+        // Create list to hold grades
+        public static List<string> gradesList = new List<string>() {};
+        
         static void Main(string[] args)
         {
             // Display title & menu choices
