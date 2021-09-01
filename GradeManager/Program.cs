@@ -76,6 +76,26 @@ namespace GradeManager
                             Console.WriteLine("No grades found. Please add a grade.");
                         }
                         break;
+                    case 7:
+                        if (gradesList.Count > 0)
+                        {
+                            for (int i = 0; i < gradesList.Count; i++)
+                            {
+                                Console.WriteLine("Student " + i + ": " + gradesList[i]);
+                            }
+                            Console.WriteLine("Edit a grade by typing the student id and then the grade value, separated by a comma. (ie \"1,55.9\"");
+                            string enteredValue = Console.ReadLine();
+                            string[] splitValue = enteredValue.Split(',');
+                            int studentID = Convert.ToInt32(splitValue[0]);
+                            double newTempGrade = Convert.ToDouble(splitValue[1]);
+                            gradesList[studentID] = newTempGrade;
+                            Console.WriteLine("Grade updated!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("No grades found. Please add a grade.");
+                        }
+                        break;
                     case 8:
                         return;
                     default:
