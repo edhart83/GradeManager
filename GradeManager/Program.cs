@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GradeManager
 {
@@ -48,6 +49,9 @@ namespace GradeManager
                         double newGrade = Convert.ToDouble(Console.ReadLine());
                         Console.WriteLine("The grade you entered is: " + newGrade);
                         gradesList.Add(newGrade);
+                        break;
+                    case 3:
+                        Console.WriteLine("The average grade is: " + gradesList.Average());
                         break;
                     case 8:
                         return;
