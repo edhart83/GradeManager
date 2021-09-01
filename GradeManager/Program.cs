@@ -6,7 +6,7 @@ namespace GradeManager
     class Program
     {
         // Create list to hold grades
-        public static List<string> gradesList = new List<string>() {};
+        public static List<double> gradesList = new List<double>() {};
         
         static void Main(string[] args)
         {
@@ -23,17 +23,42 @@ namespace GradeManager
                                 "8. Exit Application");
             Console.WriteLine("------------------");
 
-            // Store user's choice into variable
+            // Create variable to store user's choice
             int menuChoice = Convert.ToInt32(Console.ReadLine());
 
-            switch (menuChoice)
+            while (true) // Daniel Way helped me with this
             {
-                case 1:
-                    Console.WriteLine("You selected option " + menuChoice);
-                    break;
-                default:
-                    break;
-            } // ------------ END OF SWITCH ------------
+                switch (menuChoice)
+                {
+                    case 1: // --------- SHOW GRADES ---------
+                        if (gradesList.Count > 0)
+                        {
+                            for (int i = 0; i < gradesList.Count; i++)
+                            {
+                                Console.WriteLine("Student " + i + ": " + gradesList[i]);
+                            }
+                        } 
+                        else
+                        {
+                            Console.WriteLine("No grades found. Please add a grade.");
+                        }
+                        break;
+                    case 2:
+                        Console.WriteLine("Add grade as a decimal value or whole value. (ie 34.5)");
+                        double newGrade = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("The grade you entered is: " + newGrade);
+                        gradesList.Add(newGrade);
+                        break;
+                    case 8:
+                        return;
+                    default:
+                        break;
+                }
+
+                Console.WriteLine("Please choose a valid option between 1-8");
+                menuChoice = Convert.ToInt32(Console.ReadLine());
+                // ------------ END OF SWITCH ------------
+            }
 
 
         } // ------------ END OF MAIN ------------
