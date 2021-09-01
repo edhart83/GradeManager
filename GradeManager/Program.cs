@@ -47,11 +47,14 @@ namespace GradeManager
                     case 2:
                         Console.WriteLine("Add grade as a decimal value or whole value. (ie 34.5)");
                         double newGrade = Convert.ToDouble(Console.ReadLine());
-                        Console.WriteLine("The grade you entered is: " + newGrade);
+                        Console.WriteLine("Grade added! The grade you entered is: " + newGrade);
                         gradesList.Add(newGrade);
                         break;
                     case 3:
                         Console.WriteLine("The average grade is: " + gradesList.Average());
+                        break;
+                    case 4:
+                        Console.WriteLine("The highest grade is: " + gradesList.Max());
                         break;
                     case 8:
                         return;
