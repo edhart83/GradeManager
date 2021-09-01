@@ -56,6 +56,9 @@ namespace GradeManager
                     case 4:
                         Console.WriteLine("The highest grade is: " + gradesList.Max());
                         break;
+                    case 5:
+                        Console.WriteLine("The lowest grade is: " + gradesList.Min());
+                        break;
                     case 8:
                         return;
                     default:
