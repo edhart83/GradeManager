@@ -59,6 +59,23 @@ namespace GradeManager
                     case 5:
                         Console.WriteLine("The lowest grade is: " + gradesList.Min());
                         break;
+                    case 6:
+                        if (gradesList.Count > 0)
+                        {
+                            for (int i = 0; i < gradesList.Count; i++)
+                            {
+                                Console.WriteLine("Student " + i + ": " + gradesList[i]);
+                            }
+                            Console.WriteLine("Select a grade to remove by typing the students id number");
+                            int studentID = Convert.ToInt32(Console.ReadLine());
+                            gradesList.RemoveAt(studentID);
+                            Console.WriteLine("Student " + studentID + " has been removed from the list.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("No grades found. Please add a grade.");
+                        }
+                        break;
                     case 8:
                         return;
                     default:
