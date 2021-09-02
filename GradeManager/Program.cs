@@ -83,7 +83,7 @@ namespace GradeManager
                             {
                                 Console.WriteLine("Student " + i + ": " + gradesList[i]);
                             }
-                            Console.WriteLine("Edit a grade by typing the student id and then the grade value, separated by a comma. (ie \"1,55.9\"");
+                            Console.WriteLine("Edit a grade by typing the student id and then the grade value, separated by a comma. (ie \"1,55.9\")");
                             string enteredValue = Console.ReadLine();
                             string[] splitValue = enteredValue.Split(',');
                             int studentID = Convert.ToInt32(splitValue[0]);
