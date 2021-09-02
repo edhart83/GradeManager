@@ -8,7 +8,10 @@ namespace GradeManager
     {
         // Create list to hold grades
         public static List<double> gradesList = new List<double>() {};
-        
+
+        // Create variable to store user's choice
+        public static int menuChoice;
+
         static void Main(string[] args)
         {
             // Display title & menu choices
@@ -24,8 +27,17 @@ namespace GradeManager
                                 "8. Exit Application");
             Console.WriteLine("------------------");
 
-            // Create variable to store user's choice
-            int menuChoice = Convert.ToInt32(Console.ReadLine());
+            try // This makes sure user enters a number
+            {
+                menuChoice = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid entry. Please choose an option between 1-8");
+            }
+
+            //// Create variable to store user's choice
+            //int menuChoice = Convert.ToInt32(Console.ReadLine());
 
             while (true) // Daniel Way helped me with this
             {
@@ -41,14 +53,34 @@ namespace GradeManager
                         } 
                         else
                         {
-                            Console.WriteLine("No grades found. Please add a grade.");
+                            Console.WriteLine("No grades in the system. Please select option #2 to add a grade.");
                         }
                         break;
                     case 2:
-                        Console.WriteLine("Add grade as a decimal value or whole value. (ie 34.5)");
-                        double newGrade = Convert.ToDouble(Console.ReadLine());
-                        Console.WriteLine("Grade added! The grade you entered is: " + newGrade);
-                        gradesList.Add(newGrade);
+                        while (true) // This ensures the user enters a valid number less than 100
+                        {
+                            try
+                            {
+                                Console.WriteLine("Add grade as a decimal value or whole number. (ie 34.5) and less than or qual to 100");
+                                double newGrade = Convert.ToDouble(Console.ReadLine());
+                                if (newGrade > 100)
+                                {
+                                    Console.WriteLine("Please enter a number less than or equal to 100");
+                                    continue;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Grade added! The grade you entered was: " + newGrade);
+                                    gradesList.Add(newGrade);
+                                }
+                                break;
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("Invalid entry. Please try again.");
+                            }
+                            continue;
+                        }
                         break;
                     case 3:
                         Console.WriteLine("The average grade is: " + gradesList.Average());
@@ -60,20 +92,34 @@ namespace GradeManager
                         Console.WriteLine("The lowest grade is: " + gradesList.Min());
                         break;
                     case 6:
-                        if (gradesList.Count > 0)
-                        {
-                            for (int i = 0; i < gradesList.Count; i++)
+                        while (true) {  // This ensures the user selects a valid index
+                            if (gradesList.Count > 0)
                             {
-                                Console.WriteLine("Student " + i + ": " + gradesList[i]);
+                                for (int i = 0; i < gradesList.Count; i++)
+                                {
+                                    Console.WriteLine("Student " + i + ": " + gradesList[i]);
+                                }
+                                try {
+                                    Console.WriteLine("Select a grade to remove by typing the students id number");
+                                    int studentID = Convert.ToInt32(Console.ReadLine());
+                                    gradesList.RemoveAt(studentID);
+                                    Console.WriteLine("Student " + studentID + " has been removed from the list.");
+                                    break;
+                                }
+                                catch (FormatException)
+                                {
+                                    Console.WriteLine("Invalid entry. Please select a number between 0 and " + (gradesList.Count() - 1));
+                                }
+                                catch (ArgumentOutOfRangeException)
+                                {
+                                    Console.WriteLine("Invalid entry. Please select a number between 0 and " + (gradesList.Count() - 1));
+                                }
                             }
-                            Console.WriteLine("Select a grade to remove by typing the students id number");
-                            int studentID = Convert.ToInt32(Console.ReadLine());
-                            gradesList.RemoveAt(studentID);
-                            Console.WriteLine("Student " + studentID + " has been removed from the list.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("No grades found. Please add a grade.");
+                            else
+                            {
+                                Console.WriteLine("No grades found. Please add a grade.");
+                            }
+                            continue;
                         }
                         break;
                     case 7:
@@ -83,33 +129,56 @@ namespace GradeManager
                             {
                                 Console.WriteLine("Student " + i + ": " + gradesList[i]);
                             }
-                            Console.WriteLine("Edit a grade by typing the student id and then the grade value, separated by a comma. (ie \"1,55.9\")");
-                            string enteredValue = Console.ReadLine();
-                            string[] splitValue = enteredValue.Split(',');
-                            int studentID = Convert.ToInt32(splitValue[0]);
-                            double newTempGrade = Convert.ToDouble(splitValue[1]);
-                            gradesList[studentID] = newTempGrade;
-                            Console.WriteLine("Grade updated!");
                         }
                         else
                         {
-                            Console.WriteLine("No grades found. Please add a grade.");
+                            Console.WriteLine("No grades found. Please add a grade by selecting option #2");
+                            break;
+                        }
+                        while (true)
+                        {
+                            try
+                            {
+                                Console.WriteLine("Edit a grade by typing the student id and then the grade value, separated by a comma. (ie \"1,55.9\")");
+                                string enteredValue = Console.ReadLine();
+                                string[] splitValue = enteredValue.Split(',');
+                                int studentID = Convert.ToInt32(splitValue[0]);
+                                double newTempGrade = Convert.ToDouble(splitValue[1]);
+                                gradesList[studentID] = newTempGrade;
+                                Console.WriteLine("Grade updated!");
+                                break;
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("Invalid entry. Enter student id and then the grade value, separated by a comma. (ie \"1,55.9\")");
+                                continue;
+                            }
+                            catch (IndexOutOfRangeException)
+                            {
+                                Console.WriteLine("Invalid entry. Enter student id and then the grade value, separated by a comma. (ie \"1,55.9\")");
+                                continue;
+                            }
                         }
                         break;
                     case 8:
                         return;
                     default:
                         break;
+                } // ------------ END OF SWITCH ------------
+                
+                try
+                {
+                    Console.WriteLine("Please choose a valid option between 1-8");
+                    menuChoice = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid entry. Please choose an option between 1-8");
                 }
 
-                Console.WriteLine("Please choose a valid option between 1-8");
-                menuChoice = Convert.ToInt32(Console.ReadLine());
-                // ------------ END OF SWITCH ------------
-            }
-
+            } // ------------ END OF WHILE ------------
 
         } // ------------ END OF MAIN ------------
-
 
     } // ------------ END OF PROGRAM CLASS ------------
 } // ------------ END OF GRADEMANAGER NAMESPACE ------------
