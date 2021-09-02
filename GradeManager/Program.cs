@@ -56,7 +56,7 @@ namespace GradeManager
                             Console.WriteLine("No grades in the system. Please select option #2 to add a grade.");
                         }
                         break;
-                    case 2:
+                    case 2: // --------- ADD GRADE ---------
                         while (true) // This ensures the user enters a valid number less than 100
                         {
                             try
@@ -82,16 +82,16 @@ namespace GradeManager
                             continue;
                         }
                         break;
-                    case 3:
+                    case 3: // --------- SHOW CLASS AVERAGE ---------
                         Console.WriteLine("The average grade is: " + gradesList.Average());
                         break;
-                    case 4:
+                    case 4: // --------- SHOW HIGHEST GRADE ---------
                         Console.WriteLine("The highest grade is: " + gradesList.Max());
                         break;
-                    case 5:
+                    case 5: // --------- SHOW LOWEST GRADE ---------
                         Console.WriteLine("The lowest grade is: " + gradesList.Min());
                         break;
-                    case 6:
+                    case 6: // --------- REMOVE GRADE ---------
                         while (true) {  // This ensures the user selects a valid index
                             if (gradesList.Count > 0)
                             {
@@ -122,7 +122,7 @@ namespace GradeManager
                             continue;
                         }
                         break;
-                    case 7:
+                    case 7: // --------- EDIT GRADE ---------
                         if (gradesList.Count > 0)
                         {
                             for (int i = 0; i < gradesList.Count; i++)
@@ -160,7 +160,7 @@ namespace GradeManager
                             }
                         }
                         break;
-                    case 8:
+                    case 8: // --------- TERMINATE PROGRAM ---------
                         return;
                     default:
                         break;
