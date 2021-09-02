@@ -83,13 +83,46 @@ namespace GradeManager
                         }
                         break;
                     case 3: // --------- SHOW CLASS AVERAGE ---------
-                        Console.WriteLine("The average grade is: " + gradesList.Average());
+                        try
+                        {
+                            Console.WriteLine("The average grade is: " + gradesList.Average());
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            Console.WriteLine("No grades in the system. Please select option #2 to add a grade.");
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Invalid entry or not sure what happend");
+                        }
                         break;
                     case 4: // --------- SHOW HIGHEST GRADE ---------
-                        Console.WriteLine("The highest grade is: " + gradesList.Max());
+                        try
+                        {
+                            Console.WriteLine("The highest grade is: " + gradesList.Max());
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            Console.WriteLine("No grades in the system. Please select option #2 to add a grade.");
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Invalid entry or not sure what happend");
+                        }
                         break;
                     case 5: // --------- SHOW LOWEST GRADE ---------
-                        Console.WriteLine("The lowest grade is: " + gradesList.Min());
+                        try
+                        {
+                            Console.WriteLine("The lowest grade is: " + gradesList.Min());
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            Console.WriteLine("No grades in the system. Please select option #2 to add a grade.");
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Invalid entry or not sure what happend");
+                        }
                         break;
                     case 6: // --------- REMOVE GRADE ---------
                         while (true) {  // This ensures the user selects a valid index
