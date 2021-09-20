@@ -13,6 +13,14 @@ namespace GradeManager
         public static List<Student> studentsList = new List<Student>();
         //public static List<Classroom> CoursesList = new List<Classroom>();
         int numberOfStudentsInClass = 0;
+        public static int classFromSystemIndex;
+        public static string topStudent;
+        public static Student bottomStudent;
+        public static double lowestGradeAverage;
+        public double average = 0;
+        public static List<double> courseAverage = new List<double>();
+
+        public static Student studentFromList;
 
         public Classroom() { }
         public Classroom(string courseName)
@@ -58,7 +66,7 @@ namespace GradeManager
                                 {
                                     Console.WriteLine("Name: " + studentsList[i].name);
                                     //Console.WriteLine("Class Name: " + studentsList[i].studentsClass);
-                                    Console.WriteLine("Average: " + studentsList[i].gradeAverage);
+                                    Console.WriteLine("Average: " + studentsList[i].GetStudentsGradeAverage());
                                     Console.WriteLine("Completed All Assignments: " + studentsList[i].assignmentsCompleted);
                                     Console.WriteLine("Number of Assignments: " + studentsList[i].numberOfAssignments);
                                     Console.WriteLine("----------------------"); 
@@ -99,9 +107,9 @@ namespace GradeManager
                             {
                                 numberOfStudentsInClass++;
                             }
-                            //Console.Clear();
-                            Console.WriteLine("Size of studentsList: " + studentsList.Count);
-                            Console.WriteLine("# of numberOfStudentsInClass: " + numberOfStudentsInClass);
+                                Console.Clear();
+                                Console.WriteLine("Number of all students in the system: " + studentsList.Count);
+                            Console.WriteLine("Number of students in this particular class: " + numberOfStudentsInClass);
                             //Console.Clear();
                             Console.WriteLine("Success! New student " + newStudent.name + " was added to " + classFromSystem.CourseName + " class.");
                             break;
@@ -113,128 +121,169 @@ namespace GradeManager
                             continue;
                         }
                         break;
-                        //case 3: // --------- SHOW CLASS AVERAGE ---------
-                        //    try
-                        //    {
-                        //        Console.Clear();
-                        //        Console.WriteLine("The average grade is: " + studentsList.Average());
-                        //    }
-                        //    catch (InvalidOperationException)
-                        //    {
-                        //        Console.Clear();
-                        //        Console.WriteLine("No grades in the system. Please select option #2 to add a grade.");
-                        //    }
-                        //    catch (Exception)
-                        //    {
-                        //        Console.WriteLine("Invalid entry or not sure what happend");
-                        //    }
-                        //    break;
-                        //case 4: // --------- SHOW HIGHEST GRADE ---------
-                        //    try
-                        //    {
-                        //        Console.Clear();
-                        //        Console.WriteLine("The highest grade is: " + studentsList.Max());
-                        //    }
-                        //    catch (InvalidOperationException)
-                        //    {
-                        //        Console.Clear();
-                        //        Console.WriteLine("No grades in the system. Please select option #2 to add a grade.");
-                        //    }
-                        //    catch (Exception)
-                        //    {
-                        //        Console.WriteLine("Invalid entry or not sure what happend");
-                        //    }
-                        //    break;
-                        //case 5: // --------- SHOW LOWEST GRADE ---------
-                        //    try
-                        //    {
-                        //        Console.Clear();
-                        //        Console.WriteLine("The lowest grade is: " + studentsList.Min());
-                        //    }
-                        //    catch (InvalidOperationException)
-                        //    {
-                        //        Console.WriteLine("No grades in the system. Please select option #2 to add a grade.");
-                        //    }
-                        //    catch (Exception)
-                        //    {
-                        //        Console.WriteLine("Invalid entry or not sure what happend");
-                        //    }
-                        //    break;
-                        //case 6: // --------- REMOVE GRADE ---------
-                        //    Console.Clear();
-                        //    while (true)
-                        //    {  // This ensures the user selects a valid index
-                        //        if (studentsList.Count > 0)
-                        //        {
-                        //            for (int i = 0; i < studentsList.Count; i++)
-                        //            {
-                        //                Console.WriteLine("Student " + i + ": " + studentsList[i]);
-                        //            }
-                        //            try
-                        //            {
-                        //                Console.WriteLine("Select a grade to remove by typing the students id number");
-                        //                int studentID = Convert.ToInt32(Console.ReadLine());
-                        //                studentsList.RemoveAt(studentID);
-                        //                Console.Clear();
-                        //                Console.WriteLine("Student " + studentID + " has been removed from the list.");
-                        //                break;
-                        //            }
-                        //            catch (FormatException)
-                        //            {
-                        //                Console.WriteLine("Invalid entry. Please select a number between 0 and " + (studentsList.Count() - 1));
-                        //            }
-                        //            catch (ArgumentOutOfRangeException)
-                        //            {
-                        //                Console.WriteLine("Invalid entry. Please select a number between 0 and " + (studentsList.Count() - 1));
-                        //            }
-                        //        }
-                        //        else
-                        //        {
-                        //            Console.Clear();
-                        //            Console.WriteLine("No grades found. Please add a grade.");
-                        //        }
-                        //        continue;
-                        //    }
-                        //    break;
-                        //case 7: // --------- EDIT GRADE ---------
-                        //    Console.Clear();
-                        //    if (studentsList.Count > 0)
-                        //    {
-                        //        for (int i = 0; i < studentsList.Count; i++)
-                        //        {
-                        //            Console.WriteLine("Student " + i + ": " + studentsList[i]);
-                        //        }
-                        //    }
-                        //    else
-                        //    {
-                        //        Console.WriteLine("No grades found. Please add a grade by selecting option #2");
-                        //        break;
-                        //    }
-                        //    while (true)
-                        //    {
-                        //        try
-                        //        {
-                        //            Console.WriteLine("Edit a grade by typing the student id and then the grade value, separated by a comma. (ie \"1,55.9\")");
-                        //            string enteredValue = Console.ReadLine();
-                        //            string[] splitValue = enteredValue.Split(',');
-                        //            int studentID = Convert.ToInt32(splitValue[0]);
-                        //            double newTempGrade = Convert.ToDouble(splitValue[1]);
-                        //            studentsList[studentID] = newTempGrade;
-                        //            Console.WriteLine("Grade updated!");
-                        //            break;
-                        //        }
-                        //        catch (FormatException)
-                        //        {
-                        //            Console.WriteLine("Invalid entry. Enter student id and then the grade value, separated by a comma. (ie \"1,55.9\")");
-                        //            continue;
-                        //        }
-                        //        catch (IndexOutOfRangeException)
-                        //        {
-                        //            Console.WriteLine("Invalid entry. Enter student id and then the grade value, separated by a comma. (ie \"1,55.9\")");
-                        //            continue;
-                        //        }
-                        //    }
-                        //break;
+                    case 3: // --------- REMOVE STUDENTS ---------
+                        Console.Clear();
+                        Console.WriteLine("Students in " + classFromSystem.CourseName + " class:");
+                        while (true)
+                        {  // This ensures the user selects a valid index
+                            if (studentsList.Count > 0)
+                            {
+                                for (int i = 0; i < studentsList.Count; i++)
+                                {
+                                    if (studentsList[i].studentsClass.GetCourseName() == classFromSystem.GetCourseName())
+                                    {
+                                        Console.WriteLine(studentsList[i].name);
+                                    }
+                                }
+                                Console.WriteLine("Please Enter the name of the student you wish to remove:");
+                                string studentToRemove = Console.ReadLine();
+                                for (int i = 0; i < studentsList.Count; i++)
+                                {
+                                    if (studentsList[i].name == studentToRemove && studentsList[i].studentsClass.GetCourseName() == classFromSystem.GetCourseName())
+                                    {
+                                        studentsList.Remove(studentsList[i]);
+                                        numberOfStudentsInClass--;
+                                    }
+                                }
+                                Console.Clear();
+                                Console.WriteLine("Success! Student " + studentToRemove + " has been removed from " + classFromSystem.CourseName + " class:");
+                                break;
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine("No students found. Please add a student.");
+                            }
+                            continue;
+                        }
+                        break;
+                    case 4: //---------------- Display menu choices for (4) Student Details Menu ----------------
+                        // Tell user they need to add a course if none exists
+                        if (studentsList.Count <= 0)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("No students in the system...");
+                            Console.WriteLine("Please select option #2 to add a student.");
+                            break;
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Current Students: ");
+                            for (int i = 0; i < studentsList.Count; i++)
+                            {
+                                Console.WriteLine(studentsList[i].name);
+                            }
+                            // Ask user to select a student to edit from the list above
+                            Console.WriteLine("\nPlease enter the name of the student you wish to see details of: ");
+                            string studentSelection = Console.ReadLine();
+                            for (int i = 0; i < studentsList.Count; i++)
+                            {
+                                if (studentsList[i].name == studentSelection)
+                                {
+                                    studentFromList = studentsList[i];
+                                    classFromSystemIndex = i;
+                                }
+                            }
+                            Console.Clear();
+                            Console.WriteLine("Currently Editing Student: " + studentFromList.name);
+                            //// I am passing in the course name so I can use it later
+                            studentFromList.runEditStudentDetails(studentFromList, studentsList);
+                            break; // Temporary Break from Courses Move Change
+                        }
+                    case 5: // --------- SHOW CLASS AVERAGE GRADE ---------
+                        try
+                        {
+                            Console.Clear();
+                            average = GetClassAverage();
+                            Console.WriteLine("The classroom average grade is: " + average);
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("No grades in the system. Please select option #2 to add a grade.");
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Invalid entry or not sure what happend");
+                        }
+                        break;
+                    case 6: // --------- SHOW TOP STUDENT ---------
+                        try
+                        {
+                            double studentsAverage = 0;
+                            //Student tempTopStudent = new Student(Student.gradesList.Max());
+                            for (int i = 0; i < studentsList.Count; i++)
+                            {
+                                studentsAverage = studentsList[i].GetStudentsGradeAverage();
+                                if (studentsAverage > average)
+                                {
+                                    topStudent = studentsList[i].name;
+                                }
+                            }
+                            Console.Clear();
+                            Console.WriteLine("The Top Student is " + topStudent + " with an average grade of: "+ studentFromList.GetStudentsGradeAverage());
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("No grades in the system. Please select option #2 to add a grade.");
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Invalid entry or not sure what happend");
+                        }
+                        break;
+                    case 7: // --------- SHOW BOTTOM STUDENT --------- // Probably didn't do this right. Rushing to finish now
+                        double studentsAverage2 = 0;
+                        //Student tempTopStudent = new Student(Student.gradesList.Max());
+                        for (int i = 0; i < studentsList.Count; i++)
+                        {
+                            for (int j = 0; j < studentsList.Count - 1; j++)
+                            {
+                                studentsAverage2 = studentsList[i].GetStudentsGradeAverage();
+                                if (studentsList[i].GetStudentsGradeAverage() < average && studentsList[i].GetStudentsGradeAverage() < studentsList[j].GetStudentsGradeAverage())
+                                {
+                                    bottomStudent = new Student(studentsList[i].name);
+                                    lowestGradeAverage = courseAverage.Min();
+                                } 
+                            }
+                        }
+                        Console.Clear();
+                        Console.WriteLine("The Bottom Student is " + bottomStudent.name + " with an average grade of: " + lowestGradeAverage);
+                        break;
+                    case 8: // --------- COMPARE TWO STUDENTS ---------
+                        Console.Clear();
+                        Console.WriteLine("Current Students: ");
+                        for (int i = 0; i < studentsList.Count; i++)
+                        {
+                            Console.WriteLine(studentsList[i].name);
+                        }
+                        Console.WriteLine("\nPlease Enter the name of the first student:");
+                        Student firstStudent = new Student(Console.ReadLine());
+                        Console.WriteLine("\nPlease Enter the name of the second student:");
+                        Student secondStudent = new Student(Console.ReadLine());
+                        for (int i = 0; i < studentsList.Count; i++)
+                        {
+                            if (studentsList[i].name == firstStudent.name)
+                            {
+                                firstStudent = studentsList[i];
+                            } else if (studentsList[i].name == secondStudent.name)
+                            {
+                                secondStudent = studentsList[i];
+                            } else
+                            {
+                                Console.WriteLine("Error: Student is not in the system!");
+                            }
+                        }
+                        if (firstStudent.GetStudentsGradeAverage() > secondStudent.GetStudentsGradeAverage())
+                        {
+                            Console.WriteLine(firstStudent.name + " is a better student.");
+                        } else
+                        {
+                            Console.WriteLine(secondStudent.name + " is a better student.");
+                        }
+                        break;
                     case 0: // --------- TERMINATE PROGRAM ---------
                         Console.Clear();
                         return;
@@ -245,7 +294,7 @@ namespace GradeManager
                 try
                 {
                     // Display Main/Courses Menu
-                    Console.WriteLine("\nCurrently Editing Classroom");
+                    Console.WriteLine("\nCurrently Editing " + classFromSystem.CourseName + " Classroom");
                     Console.WriteLine("Please choose an option below:");
                     Console.WriteLine("1. Show Students\n" +
                                         "2. Add Students\n" +
@@ -265,7 +314,18 @@ namespace GradeManager
                 }
 
             } // ------------ END OF WHILE ------------
-            
+
+        } // ------------ END OF runClassroomStudentDetails ------------
+
+        public static double GetClassAverage()
+        {
+            double classAverage = 0;
+            for (int i = 0; i < studentsList.Count; i++)
+            {
+                courseAverage.Add(studentsList[i].GetStudentsGradeAverage());
+            }
+            classAverage = courseAverage.Average();
+            return classAverage;
         }
     }
 }

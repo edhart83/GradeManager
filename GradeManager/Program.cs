@@ -16,6 +16,8 @@ namespace GradeManager
 
         static void Main(string[] args)
         {
+            // Load dummy data to save time testing
+            createDummyData();
             // Display Main/Courses Menu 
             Console.WriteLine("Welcome to Grade Manager!\n");
             Console.WriteLine("Please choose an option below:");
@@ -89,7 +91,7 @@ namespace GradeManager
                             }
                         }
                         break;
-                    case 4: //---------------- Display menu choices for (4) Student Details Menu ----------------
+                    case 4: //---------------- Display menu choices for (4) Classroom Details Menu ----------------
                         // Tell user they need to add a course if none exists
                         if (courses.Count <= 0)
                         {
@@ -121,15 +123,6 @@ namespace GradeManager
                             Console.WriteLine("Currently Editing " + classFromSystem.GetCourseName() + " Classroom");
                             // I am passing in the course name so I can use it later
                             classFromSystem.runClassroomStudentDetails(classFromSystem, courses);
-
-                            //if (menuChoice2 == 8)
-                            //{
-                            //    break;
-                            //}
-                            //else
-                            //{
-                            //    continue;
-                            //}
                             break; // Temporary Break from Courses Move Change
                         }  
                     case 0: // --------- TERMINATE PROGRAM ---------
@@ -137,7 +130,6 @@ namespace GradeManager
                     default:
                         break;
                 } // ------------ END OF SWITCH ------------
-                
                 try
                 {
                     // Display Main/Courses Menu
@@ -155,8 +147,18 @@ namespace GradeManager
                 {
                     Console.WriteLine("Invalid entry. Please choose an option between 1-4 or 0 to terminate the program.");
                 }
-
             } // ------------ END OF WHILE ------------
+
+            void createDummyData()
+            {
+                //Classroom Art = new Classroom("Art");
+                //courses.Add(Art);
+                //Student Ed = new Student("Ed", Art);
+                //Assignment Lab1 = new Assignment("Lab1");
+                //Lab1.AssignmentGrade = 100;
+                //Ed.studentsAssignments.Add(Lab1);
+                //Classroom.studentsList.Add(Ed);
+            }
 
         } // ------------ END OF MAIN ------------
     } // ------------ END OF PROGRAM CLASS ------------
