@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\bootstrap.bundle.min.js" />
+    <Content Remove="wwwroot\bootstrap.min.css" />
+    <Content Remove="wwwroot\sidebars.css" />
+    <Content Remove="wwwroot\sidebars.js" />
+    <Content Remove="wwwroot\styles.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\css\bootstrap.min.css" />
+    <None Include="wwwroot\css\sidebars.css" />
+    <None Include="wwwroot\js\sidebars.js" />
+    <None Include="wwwroot\css\styles.css" />
+  </ItemGroup>
+
+</Project>

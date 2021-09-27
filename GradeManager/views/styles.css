@@ -1,0 +1,50 @@
+﻿.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.mainHomePageDiv {
+    padding-top: 20px;
+}
+
+.b-example-divider {
+    visibility: hidden;
+}
+
+.eds-ul {
+    /*padding-left: 50px;*/
+    margin-bottom: 10px;
+}
+
+/*.eds-blank {
+    display: none;
+}*/
+
+/*li.eds-gm-menus {
+    padding-left: 32px !important;
+}*/
+
+.eds-li {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #00adff !important;
+}
+
+/*Classroom page custom styling*/
+.eds-classroom-button {
+    line-height: .5 !important;
+    font-size: .9rem !important;
+    padding: .275rem .375rem !important;
+}
